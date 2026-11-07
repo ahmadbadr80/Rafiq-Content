@@ -24,7 +24,7 @@ jobs:
       PDF_NAME: MushafMadinaHafsGreen1441.pdf
       PDF_SHA256: 2f0b03925568fca326f47a5ec756df2c3eecc8b29f75471f3a0815a5a3e58d28
       PDF_BYTES: '65008727'
-      SOURCE_URL: https://archive.org/download/MushafMadinaHafsGreen1441/MushafMadinaHafsGreen1441.pdf
+      SOURCE_URL: https://ia903206.us.archive.org/26/items/MushafMadinaHafsGreen1441/MushafMadinaHafsGreen1441.pdf
     steps:
       - name: Download and verify the unchanged source
         shell: bash
