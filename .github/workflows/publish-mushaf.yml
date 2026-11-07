@@ -1,0 +1,91 @@
+name: Publish verified Madinah Mushaf
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [.github/workflows/publish-mushaf.yml]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-mushaf-1441-v1
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+      RELEASE_TAG: mushaf-madinah-1441-v1
+      PDF_NAME: MushafMadinaHafsGreen1441.pdf
+      PDF_SHA256: 2f0b03925568fca326f47a5ec756df2c3eecc8b29f75471f3a0815a5a3e58d28
+      PDF_BYTES: '65008727'
+      SOURCE_URL: https://archive.org/download/MushafMadinaHafsGreen1441/MushafMadinaHafsGreen1441.pdf
+    steps:
+      - name: Download and verify the unchanged source
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --proto '=https' --proto-redir '=https' \
+            --connect-timeout 30 --max-time 900 --retry 2 --retry-delay 5 \
+            --output "$PDF_NAME" "$SOURCE_URL"
+          test "$(stat -c%s "$PDF_NAME")" = "$PDF_BYTES"
+          printf '%s  %s\n' "$PDF_SHA256" "$PDF_NAME" > SHA256SUMS.txt
+          sha256sum --check SHA256SUMS.txt
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          with Path(os.environ["PDF_NAME"]).open("rb") as file:
+              assert file.read(5) == b"%PDF-", "Not a PDF file"
+          PY
+
+      - name: Prepare source attribution
+        shell: bash
+        run: |
+          cat > RELEASE_NOTES.md <<'EOF'
+          # مصحف المدينة المنورة — حفص — الطبعة الخضراء 1441 هـ
+
+          نسخة مطابقة للملف الأصلي لتسهيل التنزيل الاختياري داخل تطبيق رفيق المجاني.
+          لا تتضمن صوتيات. الحجم: 65,008,727 بايت (65.0 MB).
+
+          **المصدر:** مجمع الملك فهد لطباعة المصحف الشريف؛ النسخة المصورة المتاحة عبر
+          https://archive.org/details/MushafMadinaHafsGreen1441
+
+          لم يُعدّل محتوى المصحف أو ترتيب صفحاته أو علامات المصدر.
+          حقوق الطبعة محفوظة لأصحابها؛ هذا المستودع مرآة تنزيل وليس جهة الإصدار.
+
+          Unmodified download mirror for the free Rafiq app. The source PDF has
+          640 physical leaves; printed Quran pages 1–604 use zero-based PDF leaf
+          indexes 3–606. No app source code, credentials, or audio is included.
+
+          SHA-256:
+          `2f0b03925568fca326f47a5ec756df2c3eecc8b29f75471f3a0815a5a3e58d28`
+          EOF
+
+      - name: Publish or verify the existing release
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$RELEASE_TAG" --json isDraft > release-state.json 2>/dev/null; then
+            # Never replace an existing published asset with different bytes.
+            mkdir existing
+            gh release download "$RELEASE_TAG" --pattern "$PDF_NAME" --dir existing
+            (cd existing && printf '%s  %s\n' "$PDF_SHA256" "$PDF_NAME" | sha256sum --check)
+            test "$(stat -c%s "existing/$PDF_NAME")" = "$PDF_BYTES"
+            if python3 -c 'import json,sys;sys.exit(0 if json.load(open("release-state.json"))["isDraft"] else 1)'; then
+              gh release edit "$RELEASE_TAG" --draft=false
+            fi
+          else
+            # Keep an incomplete upload private until both assets are uploaded.
+            gh release create "$RELEASE_TAG" "$PDF_NAME" SHA256SUMS.txt \
+              --target "$GITHUB_SHA" --draft \
+              --title "Madinah Mushaf 1441 — verified 65 MB" \
+              --notes-file RELEASE_NOTES.md
+            gh release edit "$RELEASE_TAG" --draft=false
+          fi
+          gh release view "$RELEASE_TAG" --json url --jq .url
+
