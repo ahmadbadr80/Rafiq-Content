@@ -27,6 +27,15 @@ jobs:
       PDF_BYTES: '65008727'
       PDF_SHA256: 2f0b03925568fca326f47a5ec756df2c3eecc8b29f75471f3a0815a5a3e58d28
     steps:
+      - name: Install PDF utilities for page verification and rendering
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends poppler-utils
+          command -v pdfinfo
+          command -v pdftoppm
+
       - name: Retrieve the existing verified PDF from GitHub (never Internet Archive)
         shell: bash
         run: |
