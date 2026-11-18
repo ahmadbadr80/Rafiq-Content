@@ -1,0 +1,122 @@
+name: Publish verified Madinah Mushaf pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/publish-mushaf-pages.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-mushaf-pages-1441-v1
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+      PDF_TAG: mushaf-madinah-1441-v1
+      PAGE_TAG: mushaf-madinah-1441-pages-v1
+      PDF_NAME: MushafMadinaHafsGreen1441.pdf
+      PDF_BYTES: '65008727'
+      PDF_SHA256: 2f0b03925568fca326f47a5ec756df2c3eecc8b29f75471f3a0815a5a3e58d28
+    steps:
+      - name: Retrieve the existing verified PDF from GitHub (never Internet Archive)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p source pages
+          gh release download "$PDF_TAG" --pattern "$PDF_NAME" --dir source
+          test "$(stat -c%s "source/$PDF_NAME")" = "$PDF_BYTES"
+          echo "$PDF_SHA256  source/$PDF_NAME" | sha256sum -c -
+          test "$(pdfinfo "source/$PDF_NAME" | awk '/^Pages:/{print $2}')" = 640
+
+      - name: Generate and verify the 604 printed pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Physical PDF leaves 4..607 contain printed Mushaf pages 1..604.
+          pdftoppm -f 4 -l 607 -jpeg -jpegopt quality=90,optimize=y \
+            -scale-to-x 957 -scale-to-y 1368 \
+            "source/$PDF_NAME" pages/leaf
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+
+          folder = Path('pages')
+          items = []
+          for number in range(1, 605):
+              physical_leaf = number + 3
+              old = folder / f'leaf-{physical_leaf:03}.jpg'
+              assert old.is_file(), f'PDF leaf {physical_leaf} is missing'
+              target = folder / f'page_{number:03}.jpg'
+              old.rename(target)
+              data = target.read_bytes()
+              assert 1000 < len(data) < 12 * 1024 * 1024, str(target)
+              assert data[:2] == bytes.fromhex('ffd8') and data[-2:] == bytes.fromhex('ffd9'), str(target)
+              items.append({'page': number, 'asset': target.name,
+                            'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()})
+          assert len(list(folder.glob('page_*.jpg'))) == 604
+          manifest = {
+              'edition': 'Madinah Hafs Green 1441',
+              'source_release': os.environ['PDF_TAG'],
+              'source_pdf': os.environ['PDF_NAME'],
+              'source_pdf_sha256': os.environ['PDF_SHA256'],
+              'pdf_total_physical_leaves': 640,
+              'printed_pages': 604,
+              'render': 'pdftoppm JPEG quality 90, fit within 957x1368',
+              'pages': items,
+          }
+          (folder / 'pages_manifest.json').write_text(
+              json.dumps(manifest, ensure_ascii=False, separators=(',', ':')) + '\n',
+              encoding='utf-8')
+          with (folder / 'SHA256SUMS.txt').open('w', encoding='utf-8') as checksum:
+              for entry in items:
+                  checksum.write(f"{entry['sha256']}  {entry['asset']}\n")
+          PY
+          (cd pages && sha256sum -c SHA256SUMS.txt >/dev/null)
+
+      - name: Publish individual page assets separately (preserve original PDF release)
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > PAGE_NOTES.md <<'EOF'
+          # صفحات مصحف المدينة المنورة — حفص — الطبعة الخضراء 1441 هـ
+
+          604 صورة JPEG مأخوذة من نفس ملف PDF المنشور في إصدار
+          `mushaf-madinah-1441-v1`، بدون تغيير ترتيب الصفحات.
+          Source PDF SHA-256: `2f0b03925568fca326f47a5ec756df2c3eecc8b29f75471f3a0815a5a3e58d28`.
+          Printed page N corresponds to zero-based PDF leaf index N+2.
+          `pages_manifest.json` contains checksums per image.
+          Rights of the printed edition remain with the respective owners.
+          EOF
+          if ! gh release view "$PAGE_TAG" >/dev/null 2>&1; then
+            gh release create "$PAGE_TAG" --draft \
+              --title 'Madinah Mushaf 1441 — 604 individual page images' \
+              --notes-file PAGE_NOTES.md
+          fi
+          mapfile -t images < <(find pages -maxdepth 1 -name 'page_*.jpg' | sort)
+          test "${#images[@]}" -eq 604
+          for ((start=0; start<604; start+=20)); do
+            batch=("${images[@]:start:20}")
+            success=false
+            for attempt in 1 2 3; do
+              if gh release upload "$PAGE_TAG" "${batch[@]}" --clobber; then
+                success=true
+                break
+              fi
+              sleep $((attempt * 6))
+            done
+            test "$success" = true
+          done
+          gh release upload "$PAGE_TAG" pages/pages_manifest.json pages/SHA256SUMS.txt --clobber
+          count=$(gh release view "$PAGE_TAG" --json assets --jq '.assets | length')
+          test "$count" -eq 606
+          gh release edit "$PAGE_TAG" --draft=false
+          echo "Published $count assets at $(gh release view "$PAGE_TAG" --json url --jq .url)"
