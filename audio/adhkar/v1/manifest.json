@@ -1,0 +1,298 @@
+{
+  "schema": 1,
+  "collection": "rafiq_remote_adhkar_audio",
+  "version": "v1",
+  "repository": "ahmadbadr80/Rafiq-Content",
+  "base_url": "https://raw.githubusercontent.com/ahmadbadr80/Rafiq-Content/main/audio/adhkar/v1/",
+  "files": [
+    {
+      "file": "dhikr_afw_afia.mp3",
+      "clip": "dhikr_afw_afia",
+      "bytes": 476098,
+      "sha256": "d58f116449663f9f99fbe549de141dc57d1896e4a91cfb05dbe686e7b8e63eaf"
+    },
+    {
+      "file": "dhikr_bismillah.mp3",
+      "clip": "dhikr_bismillah",
+      "bytes": 152136,
+      "sha256": "f082f3b60301015af08745b8d53ec293da301fef965515e593f1aa2ce7205d6b"
+    },
+    {
+      "file": "dhikr_creation.mp3",
+      "clip": "dhikr_creation",
+      "bytes": 153390,
+      "sha256": "c80a99fddd981389e41250f5277536302f1b654eb484f1a66043da373f6ab702"
+    },
+    {
+      "file": "dhikr_evening_blessing.mp3",
+      "clip": "dhikr_evening_blessing",
+      "bytes": 173870,
+      "sha256": "7f26e6efb3aff5e5d6a42c6cb03b51d6866f9c00647db0a35b205fb520db7bda"
+    },
+    {
+      "file": "dhikr_evening_by_you.mp3",
+      "clip": "dhikr_evening_by_you",
+      "bytes": 154643,
+      "sha256": "12c3fc1859256ae1d2d88f9b109e5d79260d38a47db43167edf7f5427a621c2b"
+    },
+    {
+      "file": "dhikr_evening_fitrah.mp3",
+      "clip": "dhikr_evening_fitrah",
+      "bytes": 308034,
+      "sha256": "a23098500e034722c6075613b85ff8f1cbf1241d3c2b2878e7799cf6d06518d5"
+    },
+    {
+      "file": "dhikr_evening_mulk.mp3",
+      "clip": "dhikr_evening_mulk",
+      "bytes": 590993,
+      "sha256": "ffb9af2b29d8a735eebcb8b7fc249943ac70f7dc0f4a09f4dd2ea90ea7430d93"
+    },
+    {
+      "file": "dhikr_evening_witness.mp3",
+      "clip": "dhikr_evening_witness",
+      "bytes": 312214,
+      "sha256": "1dc6d3c15eba44d4bc0138924f269c46b880ddfb673b71a5c15ef7e382acce3b"
+    },
+    {
+      "file": "dhikr_evening_worlds.mp3",
+      "clip": "dhikr_evening_worlds",
+      "bytes": 333948,
+      "sha256": "8bb3c3cf2a3a6dbb1ce81f52b2430b3175b3a091213c8f0d870d3c710040e9da"
+    },
+    {
+      "file": "dhikr_hasbi.mp3",
+      "clip": "dhikr_hasbi",
+      "bytes": 152136,
+      "sha256": "1ae59a4ce82c92d42efcfcb0e8673116986d977ef7fc01e87139814fe2a44539"
+    },
+    {
+      "file": "dhikr_hayy.mp3",
+      "clip": "dhikr_hayy",
+      "bytes": 170108,
+      "sha256": "d6ed0785bdda36d56ed643110b9f19211b86c1134d5890a8f202fbcc700d33b7"
+    },
+    {
+      "file": "dhikr_health.mp3",
+      "clip": "dhikr_health",
+      "bytes": 343979,
+      "sha256": "6c41e121e329f7d698f90a7eb74e4cb9c7d8f40a68797cf3040699a340956ad1"
+    },
+    {
+      "file": "dhikr_morning_blessing.mp3",
+      "clip": "dhikr_morning_blessing",
+      "bytes": 177631,
+      "sha256": "b4eb89b4f4274ca3ea850433477ed96512002b3ce6cfd7b51f06b55ac5efd9af"
+    },
+    {
+      "file": "dhikr_morning_by_you.mp3",
+      "clip": "dhikr_morning_by_you",
+      "bytes": 152136,
+      "sha256": "9cdf5ef9f7667a4bb2e2f31567eda9a9a72ab9f7db6041c87b6add81862893f8"
+    },
+    {
+      "file": "dhikr_morning_fitrah.mp3",
+      "clip": "dhikr_morning_fitrah",
+      "bytes": 267074,
+      "sha256": "36e5f3e011ae70637e5e083cce7af0b690479cbba749b946721a2b207f27227d"
+    },
+    {
+      "file": "dhikr_morning_knowledge.mp3",
+      "clip": "dhikr_morning_knowledge",
+      "bytes": 135417,
+      "sha256": "63057b4da3c84d276cbcb4b0ca60ca9c3e1118fddf54bed7862eebe46ceea559"
+    },
+    {
+      "file": "dhikr_morning_mulk.mp3",
+      "clip": "dhikr_morning_mulk",
+      "bytes": 553794,
+      "sha256": "ac05024e051ee86b207ca4c9239ce9999898fb14fda7c9b2906be54894ce20ba"
+    },
+    {
+      "file": "dhikr_morning_witness.mp3",
+      "clip": "dhikr_morning_witness",
+      "bytes": 289226,
+      "sha256": "b418867c3551d6275e454d6b3601a462f9b8d5b054d6de195c9e22a7e28d4d57"
+    },
+    {
+      "file": "dhikr_morning_worlds.mp3",
+      "clip": "dhikr_morning_worlds",
+      "bytes": 282539,
+      "sha256": "3a243703427ae910b24ac879a69d744a439bdaf3ecc040762b94ddcb1e2cca14"
+    },
+    {
+      "file": "dhikr_post_01.mp3",
+      "clip": "dhikr_post_01",
+      "bytes": 669562,
+      "sha256": "aaded5c4dfc4937a0eebcc6acebc03bbe0f8d45f4763ad43a72b8f7da5590038"
+    },
+    {
+      "file": "dhikr_post_02.mp3",
+      "clip": "dhikr_post_02",
+      "bytes": 1051474,
+      "sha256": "f2717118f3894455c0cc9f1e0af90bdb2a91c1789c4758cb346d9aee22f00e56"
+    },
+    {
+      "file": "dhikr_post_03.mp3",
+      "clip": "dhikr_post_03",
+      "bytes": 1185573,
+      "sha256": "56504ea05ad320bd415888a4e065a7e2607ed739f46161aa9652d81ceaaa7c05"
+    },
+    {
+      "file": "dhikr_post_04.mp3",
+      "clip": "dhikr_post_04",
+      "bytes": 1521786,
+      "sha256": "86471251060d2fd1ca62f0ebd0781570934b9478c92ba09ae936199d5ff33929"
+    },
+    {
+      "file": "dhikr_post_05.mp3",
+      "clip": "dhikr_post_05",
+      "bytes": 742326,
+      "sha256": "e732d37dbf453931f6ed03d5e48e6edebbcf404859bb343374a1b1eeb1de754f"
+    },
+    {
+      "file": "dhikr_post_06.mp3",
+      "clip": "dhikr_post_06",
+      "bytes": 912402,
+      "sha256": "7a9aa7dbd494ba32c76a6f9f9571d044de4ece47703d396a15451fb2975a343a"
+    },
+    {
+      "file": "dhikr_post_07.mp3",
+      "clip": "dhikr_post_07",
+      "bytes": 834321,
+      "sha256": "a20b969213329531841819a19c1a8383c81de505e7296f5ba0fd5174b1f71643"
+    },
+    {
+      "file": "dhikr_post_08.mp3",
+      "clip": "dhikr_post_08",
+      "bytes": 1077126,
+      "sha256": "ae67709c3a3b79ed05ae58017031ddafcc87fa921a83fe7b8d6815078eccc634"
+    },
+    {
+      "file": "dhikr_post_09.mp3",
+      "clip": "dhikr_post_09",
+      "bytes": 983781,
+      "sha256": "30bd84687089ced39f0a908e24602cc44d27befdca51d7bc7692a05b85073500"
+    },
+    {
+      "file": "dhikr_protection.mp3",
+      "clip": "dhikr_protection",
+      "bytes": 94457,
+      "sha256": "d4986095d2e7d81513e5278487772bcd186ecac9c06daee019e456192b8e45c0"
+    },
+    {
+      "file": "dhikr_quran_al_baqarah_285_286.mp3",
+      "clip": "dhikr_quran_al_baqarah_285_286",
+      "bytes": 1409573,
+      "sha256": "70d6b2733215b2bae40b122f4c4e13e49ca3a5c6d5e75fe0fa74dd2e3cdeb253"
+    },
+    {
+      "file": "dhikr_quran_al_falaq.mp3",
+      "clip": "dhikr_quran_al_falaq",
+      "bytes": 349401,
+      "sha256": "eccab5d3deb73278b225f3c1ed7ccefb8a7b670d92366cafb48598f170446849"
+    },
+    {
+      "file": "dhikr_quran_al_ikhlas.mp3",
+      "clip": "dhikr_quran_al_ikhlas",
+      "bytes": 217431,
+      "sha256": "23ae68728e744f8ce7a84da8844b7b8e9357e90550afe34b1295d56902b94d83"
+    },
+    {
+      "file": "dhikr_quran_al_kafirun.mp3",
+      "clip": "dhikr_quran_al_kafirun",
+      "bytes": 481374,
+      "sha256": "21b25a427f8bd6ee669fcff5f8711cbca3783c0a988dcb493f5280828eb3510a"
+    },
+    {
+      "file": "dhikr_quran_an_nas.mp3",
+      "clip": "dhikr_quran_an_nas",
+      "bytes": 433409,
+      "sha256": "969c6148cc1d72ef4515e137e313147f52ae0dfb6f8ddc4c47a0be44a77c891e"
+    },
+    {
+      "file": "dhikr_quran_ayat_al_kursi.mp3",
+      "clip": "dhikr_quran_ayat_al_kursi",
+      "bytes": 1031096,
+      "sha256": "23c534cb629d2f5ba85f0072511b93b918f76337be9d13337426574621aa23bb"
+    },
+    {
+      "file": "dhikr_raditu.mp3",
+      "clip": "dhikr_raditu",
+      "bytes": 129148,
+      "sha256": "e658dcd49d48158781d3c1e9ab3decb2f01a7a905455565a6c38c42ad5c8f72c"
+    },
+    {
+      "file": "dhikr_salawat.mp3",
+      "clip": "dhikr_salawat",
+      "bytes": 68962,
+      "sha256": "0d0ab59f10ed9f4f5f01a1078b13ef0f027f62ec2767cbdb2068c7552a600055"
+    },
+    {
+      "file": "dhikr_sayyid.mp3",
+      "clip": "dhikr_sayyid",
+      "bytes": 376162,
+      "sha256": "accc0ac28f9f37d9e44eec0104c8fe04f018b43943374a22bace599d2e93b0fa"
+    },
+    {
+      "file": "dhikr_sleep_dua_01.mp3",
+      "clip": "dhikr_sleep_dua_01",
+      "bytes": 767381,
+      "sha256": "512993fbee7ed54f5ffd0b8a81af6f447259ee0aef45a958822937ebfdad6722"
+    },
+    {
+      "file": "dhikr_sleep_dua_02.mp3",
+      "clip": "dhikr_sleep_dua_02",
+      "bytes": 1054876,
+      "sha256": "4207f0a2f8f0fe39148410faa3c411daf52891996e25650d8544c5c17baab1a5"
+    },
+    {
+      "file": "dhikr_sleep_dua_03.mp3",
+      "clip": "dhikr_sleep_dua_03",
+      "bytes": 1232057,
+      "sha256": "6fdc0a2c7277fca79b2f75778a89a8911b19c6edf34bc604ebb3998a0a385ba9"
+    },
+    {
+      "file": "dhikr_sleep_dua_04.mp3",
+      "clip": "dhikr_sleep_dua_04",
+      "bytes": 922630,
+      "sha256": "fd60dcc51b04185a39def76a519f82709091ba8f910ce29e198d24a4927f1ca6"
+    },
+    {
+      "file": "dhikr_sleep_dua_05.mp3",
+      "clip": "dhikr_sleep_dua_05",
+      "bytes": 1378407,
+      "sha256": "2fdcad2a9a34066ad43e7b14c5e27e3e42f6e1818b5f71a77cf7aa80f2b17b3a"
+    },
+    {
+      "file": "dhikr_sleep_dua_06.mp3",
+      "clip": "dhikr_sleep_dua_06",
+      "bytes": 1130398,
+      "sha256": "0e80891227bc078e202171b12aa4c59c19b9e6077de83dbdbfdfcfb87eb5c2f6"
+    },
+    {
+      "file": "dhikr_sleep_dua_07.mp3",
+      "clip": "dhikr_sleep_dua_07",
+      "bytes": 1236704,
+      "sha256": "580a12c27fa9d3eba207ed14c85a53fda20e6c6e74a8d6f04c4085b9be5d3129"
+    },
+    {
+      "file": "dhikr_subhan.mp3",
+      "clip": "dhikr_subhan",
+      "bytes": 49736,
+      "sha256": "68b069b45356e2bfdbc5d2bfcdedd203e80aec12cf59ed10aad919202088e653"
+    },
+    {
+      "file": "dhikr_tahleel.mp3",
+      "clip": "dhikr_tahleel",
+      "bytes": 168854,
+      "sha256": "394d2acf5f7e4d7370257e9e93b1ffadaeb8c3b3b19bb8f7a477b920fadf50c1"
+    },
+    {
+      "file": "dhikr_unseen.mp3",
+      "clip": "dhikr_unseen",
+      "bytes": 359443,
+      "sha256": "0661446c4f342d8b8439c99ff569181ddb70a3c9f3a896b3cb11e643c9e079f5"
+    }
+  ],
+  "rights_status": "public_redistribution_not_independently_verified"
+}
